@@ -1,6 +1,7 @@
 const navBtn = document.querySelector(".navbar__burger-icon");
 const navMenu = document.querySelector(".navbar__list");
 const allNavItems = document.querySelectorAll(".navbar__list");
+const footerYear = document.querySelector(".footer__year");
 
 navBtn.addEventListener("click", () => {
   navMenu.classList.toggle("navbar__list--active");
@@ -13,3 +14,12 @@ const closeMobileNav = () => {
     });
   });
 };
+
+const handleCurrentYear = () => {
+  const year = new Date().getFullYear();
+  footerYear.innerText = year;
+};
+
+handleCurrentYear();
+
+closeMobileNav();
