@@ -1,0 +1,905 @@
+@use "colors.scss" as *;
+
+*,
+*::after,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: $white;
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 120em;
+  margin: 0 auto;
+}
+
+// NAVBAR
+
+.navbar {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  background-color: transparent;
+  z-index: 100;
+
+  &__nav {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
+    height: 10em;
+    padding: 0.5em;
+    margin: 0 1em;
+  }
+  &__list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: bold;
+    position: absolute;
+    top: 8em;
+    right: 0;
+    width: 100%;
+    opacity: 0.95;
+    background-color: $white;
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    transition: clip-path 0.1s linear;
+
+    &--active {
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+
+    &-item {
+      display: block;
+      font-size: 1.9rem;
+      padding: 1em 0;
+
+      a {
+        position: relative;
+        color: $dark;
+        text-decoration: none;
+        transition: color 0.2s;
+
+        &::before {
+          content: "";
+          position: absolute;
+          bottom: -0.5em;
+          height: 0.1em;
+          width: 100%;
+          transform: scaleX(0);
+          transition: transform 0.3s;
+          background-color: $dark;
+        }
+
+        &:hover::before {
+          transform: scaleX(1);
+        }
+      }
+    }
+  }
+  &__contact {
+    border: 3px solid $dark;
+    border-radius: 6px;
+    padding: 1em;
+    a {
+      padding: 2em;
+      font-size: 1.6rem;
+      font-weight: bold;
+      color: $dark;
+      text-decoration: none;
+    }
+  }
+
+  &__burger-icon {
+    padding: 0.5em;
+    font-size: 3rem;
+    color: $dark;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+}
+
+// HEADER
+
+.header {
+  position: relative;
+  padding-top: 8em;
+  &__box {
+    &-text {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      flex-direction: column;
+      height: calc(100vh - 80px);
+      padding: 1.5em;
+      color: $dark;
+      text-align: left;
+      z-index: 1;
+      h1 {
+        font-size: 5rem;
+        font-weight: bold;
+        margin-bottom: 0.2em;
+      }
+
+      p {
+        font-size: 2.3rem;
+        line-height: 1.6em;
+        margin-bottom: 1em;
+      }
+      a {
+        border-radius: 6px;
+        background-color: #232323;
+        padding: 1em 2.5em;
+        font-size: 1.6rem;
+        font-weight: bold;
+        color: $white;
+        text-decoration: none;
+      }
+    }
+    &-scribble {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 10em;
+      z-index: -1;
+    }
+    &-scribble2 {
+      position: absolute;
+      top: 8%;
+      left: 0;
+      width: 30em;
+      z-index: -1;
+    }
+    &-img {
+      display: none;
+    }
+  }
+}
+
+//MEMORY
+
+.memory {
+  position: relative;
+  background-color: $dark;
+  color: $white;
+  &__text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 15em 1.5em;
+    color: $white;
+    text-align: center;
+    z-index: 1;
+    h1 {
+      font-size: 5rem;
+      font-weight: bold;
+      margin-bottom: 0.2em;
+    }
+
+    p {
+      font-size: 2.3rem;
+      line-height: 1.6em;
+      margin-bottom: 1em;
+    }
+    a {
+      border: 2px solid $white;
+      border-radius: 6px;
+      background-color: transparent;
+      padding: 1em 2.5em;
+      font-size: 1.6rem;
+      font-weight: bold;
+      color: $white;
+      text-decoration: none;
+    }
+  }
+  &__scribble {
+    position: absolute;
+    top: 5%;
+    left: 0;
+    width: 30em;
+  }
+  &__scribble2 {
+    position: absolute;
+    bottom: 10%;
+    right: 0;
+    width: 35em;
+  }
+}
+
+//MOUNTAIN
+
+.mountainCards {
+  position: relative;
+  padding: 10em 0;
+  &__cards {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: $dark;
+    &-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2em 2em;
+      text-align: left;
+      width: 80%;
+      img {
+        width: 100%;
+      }
+      h2 {
+        position: relative;
+        font-size: 3rem;
+        width: 100%;
+        padding: 1.5em 0 0.5em 0;
+
+        &::before {
+          content: "";
+          position: absolute;
+          top: 25%;
+          left: 0;
+          width: 80px;
+          height: 3px;
+          background-color: $dark;
+        }
+      }
+      p {
+        font-size: 1.8rem;
+      }
+    }
+  }
+  &__scribble {
+    position: absolute;
+    top: -10%;
+    left: 0;
+    width: 4.5em;
+    z-index: -1;
+  }
+  &__scribble2 {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 6em;
+    z-index: -1;
+  }
+}
+
+//PLANE
+
+.plane {
+  position: relative;
+  &__box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+    padding: 0 1em;
+    color: $dark;
+
+    img {
+      width: 8em;
+    }
+    h2 {
+      font-size: 5.6rem;
+      padding: 0.7em 0;
+      span {
+        border-bottom: 4px solid $dark;
+      }
+    }
+    p {
+      font-size: 2.2rem;
+      font-weight: bold;
+    }
+  }
+  &__scribble {
+    position: absolute;
+    bottom: 8%;
+    left: 10%;
+    width: 30em;
+    z-index: -1;
+  }
+  &__scribble2 {
+    position: absolute;
+    top: 10%;
+    right: 0;
+    width: 15em;
+    z-index: -1;
+  }
+}
+
+//GUIDES
+
+.guides {
+  padding: 10em 0 5em 0;
+
+  &__box {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    &__left {
+      display: block;
+      position: relative;
+      padding: 0 6em;
+      width: 100%;
+
+      &--mountain {
+        width: 100%;
+      }
+
+      &--tape {
+        position: absolute;
+        left: 35px;
+        top: calc(50% - 126px);
+      }
+    }
+    &__right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 0 2em;
+      img {
+        display: none;
+        width: 100%;
+      }
+      &__text {
+        display: flex;
+        flex-direction: column;
+        padding: 2em 0;
+        text-align: left;
+        color: $dark;
+
+        h2 {
+          font-size: 3.6rem;
+          text-align: center;
+          padding-bottom: 0.5em;
+          text-decoration: underline;
+        }
+        p {
+          font-size: 1.8rem;
+          padding: 0.5em 0;
+        }
+      }
+    }
+  }
+}
+
+//ABOUT
+.about {
+  position: relative;
+  padding: 5em 0 12em 0;
+  background-color: $dark;
+  width: 100%;
+  overflow: hidden;
+
+  &__box {
+    display: flex;
+    align-items: center;
+    &__left {
+      display: flex;
+      flex-direction: column;
+      color: $white;
+      padding: 2em;
+
+      h2 {
+        font-size: 4.6rem;
+        text-align: center;
+        padding-bottom: 1em;
+      }
+      h3 {
+        font-size: 2.8rem;
+        padding-bottom: 0.5em;
+      }
+      p {
+        font-size: 1.8rem;
+      }
+      &__one,
+      &__two {
+        padding-top: 2em;
+      }
+      img {
+        position: absolute;
+        left: 0;
+        bottom: -60px;
+        width: 43em;
+      }
+    }
+    &__right {
+      display: none;
+      width: 50%;
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+}
+
+//Details
+
+.details {
+  padding: 5em 0 12em 0;
+  &__box {
+    display: flex;
+    flex-direction: column;
+    &__left {
+      display: flex;
+      flex-direction: column;
+      h2 {
+        font-size: 5.2rem;
+        text-align: center;
+      }
+      details {
+        padding: 2em 0 2em 1em;
+        text-align: left;
+        border-top: 3px solid $dark;
+        summary {
+          font-size: 2.4rem;
+        }
+        p {
+          padding: 0.5em 0.2em;
+          font-size: 1.8rem;
+        }
+      }
+      details:nth-last-child(1) {
+        border-bottom: 3px solid $dark;
+      }
+      details:nth-last-child(4) {
+        margin-top: 4em;
+      }
+    }
+    &__right {
+      display: none;
+    }
+  }
+}
+.slider {
+  padding: 5em 0 12em 0;
+  position: relative;
+  overflow: hidden;
+
+  h2 {
+    font-size: 5.2rem;
+    text-align: center;
+    padding: 0 0.1em;
+  }
+
+  &__customers {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+    padding-top: 3em;
+
+    &__item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 30em;
+      text-align: center;
+      padding: 5em 0;
+      margin: 2em 1em;
+      border: 3px solid $dark;
+      border-radius: 8px;
+
+      h3 {
+        font-size: 2.4rem;
+        padding: 0.5em 0;
+      }
+      p {
+        font-size: 1.6rem;
+        padding: 0 0.5em;
+      }
+    }
+  }
+
+  .scribble {
+    position: absolute;
+    right: -18em;
+    bottom: 2em;
+    width: 58em;
+  }
+}
+
+.contact {
+  padding: 5em 0 12em 0;
+  &__left {
+    h2 {
+      font-size: 5.2rem;
+      text-align: center;
+      padding: 0 0 1em 0;
+    }
+    &__form {
+      display: flex;
+      flex-direction: column;
+    }
+    &__form-input::placeholder,
+    &__form-textarea::placeholder {
+      color: $dark;
+    }
+    &__form-input:focus,
+    &__form-textarea:focus {
+      outline: 1px solid $dark;
+    }
+    &__form-input {
+      margin: 0 1em 2em 1em;
+      padding: 0.6em 1.2em;
+      border: 2px solid $dark;
+      background-color: transparent;
+      border-radius: 8px;
+      font-size: 1.6rem;
+    }
+    &__form-textarea {
+      margin: 0 1em 2em 1em;
+      padding: 0.6em 1.2em;
+      border: 2px solid $dark;
+      background-color: transparent;
+      border-radius: 8px;
+      font-size: 1.6rem;
+      min-height: 150px;
+    }
+    button {
+      border-radius: 6px;
+      background-color: #232323;
+      margin: 0 0.5em 0 0.5em;
+      padding: 0.5em 0;
+      font-size: 2.4rem;
+      text-align: center;
+      color: $white;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  }
+  &__right {
+    display: none;
+  }
+}
+.footer {
+  color: $dark;
+  background-color: #c5c5c5;
+
+  .wrapper {
+    padding: 6em 2em 2em;
+  }
+
+  &__box {
+    font-size: 1.4rem;
+
+    &-desktop {
+      display: none;
+    }
+
+    &-title {
+      margin-bottom: 1em;
+      font-size: 3rem;
+      text-transform: uppercase;
+    }
+    &-titleone {
+      margin-bottom: 0.5em;
+      font-size: 3rem;
+      text-transform: uppercase;
+    }
+
+    &-social {
+      margin: 2em 0 1em;
+    }
+    &-link {
+      padding: 0 0.3em;
+      font-size: 3.6rem;
+      text-decoration: none;
+      transition: color 0.3s;
+
+      &:first-child {
+        padding-left: 0;
+      }
+    }
+  }
+  &__bottom-text {
+    padding: 1em;
+    text-align: center;
+  }
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 68%;
+  }
+
+  .navbar {
+    position: absolute;
+
+    &__nav {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      align-content: center;
+      align-items: center;
+      margin: 0 2em;
+    }
+
+    &__list {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      position: static;
+      width: 40%;
+      background-color: transparent;
+      opacity: 0.95;
+      clip-path: none;
+    }
+    &__burger-icon {
+      display: none;
+    }
+  }
+
+  //HEADER
+  .header {
+    position: relative;
+    &__box {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-evenly;
+      &-text {
+        width: 40%;
+      }
+      &-img {
+        display: block;
+        width: 55%;
+      }
+      &-scribble2 {
+        top: 40%;
+        width: 50em;
+      }
+    }
+  }
+
+  //MEMORY
+  .memory {
+    &__text {
+      padding: 12em 1.5em;
+      p {
+        width: 50%;
+      }
+    }
+    &__scribble {
+      top: 1%;
+      left: 0;
+      width: 40em;
+    }
+    &__scribble2 {
+      bottom: 2%;
+      right: 0;
+      width: 45em;
+    }
+  }
+
+  //MOUNTAIN
+  .mountainCards {
+    &__cards {
+      flex-direction: row;
+      padding: 0 4em;
+    }
+  }
+
+  //PLANE
+
+  .plane {
+    &__box {
+      img {
+        width: 10em;
+      }
+      h2 {
+        font-size: 8rem;
+        width: 70%;
+      }
+      p {
+        font-size: 2.6rem;
+      }
+    }
+    &__scribble {
+      bottom: 9%;
+      left: 15%;
+      width: 35em;
+    }
+    &__scribble2 {
+      top: 5%;
+      right: 0;
+      width: 25em;
+    }
+  }
+
+  //Guides
+  .guides {
+    &__box {
+      flex-direction: row;
+      &__left {
+        // display: block;
+        width: 50%;
+      }
+      &__right {
+        width: 50%;
+        img {
+          display: block;
+          width: 70%;
+        }
+        &__text {
+          display: flex;
+          flex-direction: row;
+          padding: 5em 0;
+          text-align: left;
+
+          h2 {
+            text-align: left;
+            font-size: 3.2rem;
+          }
+          &__paragraph {
+            margin-left: 3em;
+            p {
+              font-size: 1.6rem;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  //ABOUT
+  .about {
+    &__box {
+      &__left {
+        width: 50%;
+        h2 {
+          font-size: 5.2rem;
+          width: 90%;
+          text-align: left;
+        }
+        p {
+          width: 80%;
+        }
+        &__one,
+        &__two {
+          padding-top: 3em;
+        }
+        img {
+          bottom: -10em;
+          width: 53em;
+        }
+      }
+      &__right {
+        display: block;
+      }
+    }
+  }
+  .footer {
+    &__boxes {
+      display: flex;
+      justify-content: space-around;
+    }
+    &__box-desktop {
+      display: block;
+    }
+
+    &__box {
+      margin: 0 2em;
+      width: 25%;
+
+      &:first-child {
+        width: 50%;
+      }
+      &-desktop {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+      }
+    }
+    &__box-title {
+      font-size: 2.2rem;
+    }
+    &__box-titleone {
+      font-size: 3.8rem;
+    }
+    &__box-list {
+      list-style: none;
+    }
+    &__box-list-item {
+      margin-bottom: 1em;
+      font-size: 1.5rem;
+
+      a {
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .details {
+    &__box {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      &__left {
+        display: flex;
+        flex-direction: column;
+        width: 58%;
+        padding-left: 5em;
+        h2 {
+          text-align: left;
+          font-size: 6.2rem;
+        }
+        details {
+          summary {
+            font-size: 2rem;
+          }
+          p {
+            padding: 0.5em 0.2em;
+            font-size: 1.6rem;
+          }
+        }
+      }
+      &__right {
+        position: relative;
+        display: block;
+        padding-left: 2em;
+        width: 40%;
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
+  .slider {
+    h2 {
+      font-size: 6.2rem;
+      width: 65%;
+      margin: 0 auto;
+    }
+    &__customers {
+      &__item {
+        margin: 2em;
+        width: 35em;
+        h3 {
+          font-size: 2.8rem;
+        }
+        p {
+          font-size: 1.8rem;
+        }
+      }
+    }
+  }
+  .contact {
+    &__box {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-around;
+    }
+    &__left {
+      width: 40%;
+    }
+    &__right {
+      display: block;
+      // padding-right: 2em;
+      width: 50%;
+      img {
+        width: 100%;
+      }
+    }
+  }
+}
